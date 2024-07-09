@@ -1,0 +1,279 @@
+@charset "utf-8";
+
+
+*{margin:0; padding:0; box-sizing: border-box;}
+body {color:#666 }
+
+
+a { display: block; color:black; text-decoration: none;}
+
+
+img {display:block; max-width:100%;}
+/* img 가 부모 밖으로 나오지 못하게 max-width:100% 설정*/
+
+
+#layout { width:1100px; height: 1200px; /*border:5px solid red;*/ margin:auto;}
+
+
+/*상단*/
+#logo {margin-right: 150px; }
+header { height: 200px; display:flex; align-items: flex-start; padding-top:50px; position:relative; z-index: 1;} /* sub메뉴가 슬라이드 이미지에 가려지기 때문에 section 레벨과 동일한 position:relative;를 잡아서, z-index:1을 해주면 가려진 sub메뉴가 위로 올라오게 된다. */
+header ul {/*flex:2;*/ list-style: none; display:flex; flex:1; text-align:center; padding-top:15px;} /*list-style: none;을 하면 앞에 bullet 마크가 사라진다.*/
+header li {flex:1;}
+
+
+/*메뉴호버*/
+header li .subMenu {transition: 0.2s;}
+header li:hover .mainMenu{background: #004f8a; color:white;}
+header li:hover .subMenu{/*display:block;*/ height: 150px; padding:10px 0;}
+
+/*li.hover에서 자식인 .subMenu를 찾아라 는 의미*/ /*display:block은 subMenu에서 display:none 해 놓은 것을 마우스를 가져 갔을 때, block 표시하라는 의미*/
+
+
+/*메인 메뉴*/
+.mainMenu {font-size: 1.2rem; font-weight: bold; padding:4px 0px 7px; }
+/*.mainMenu:hover {background-color:#004f8a ; color :white;}*/
+/* 상단에 header li:hover .mainMenu 가 있기 때문에 .mainMenu:hover 주석처리함 */
+
+
+/*서브 메뉴*/
+.subMenu { background: rgba(255,255,255,0.85); box-shadow: 0 1px 2px rgba(0,0,0,0.5);  /*display:none;*/ height: 0px; overflow: hidden;}/*rgba중"a"는 투명도를 나타냄 0로 갈수록 투명*/ /*padding:5px 0px: 서브메뉴 상/하 여백*/
+.subMenu a {padding:3px 0 6px;}
+.subMenu a:hover {background-color: #6a6a6a; color:white; font-weight: bold;}
+
+#slide 
+{
+    display:flex; position:relative; left:0;
+    animation: go1 10s 1s both infinite; width:3300px;
+}
+
+#slide img {width:1100px;}
+
+@keyframes go1
+{    
+    0% { left:0;}
+    25% { left:-1100px;}
+    50% { left:-2200px;}
+    75% { left:-1100px;}
+    100% { left:0px;}
+}
+
+@keyframes big
+{
+    to {transform: scale(1);}
+}
+
+/*슬라이드*/
+header+section {height: 350px; background-color: yellow; overflow: hidden; position:relative;}
+
+h1 
+{
+    position:absolute; top:27%; left:25%; /*position:absolute;는 위로 띄움*/
+    background: rgba(255,255,255,0.85); 
+    z-index: 1; padding:50px 100px; 
+    border-radius: 15px; 
+    box-shadow: 0 0 10px black; 
+    animation: big 1.5s 0.5s both infinite alternate-reverse; transform: scale(0);
+}
+
+
+/*메인*/
+main 
+{ 
+    height: 500px; 
+   /* background-color: yellowgreen;*/
+    display:flex;
+    padding-top:50px;
+}
+
+main h2
+{
+    margin-bottom:20px;
+    border-bottom: 2px solid #ccc;
+}
+
+main section
+{
+    /*border:3px solid tomato;*/
+}
+
+/*공지사항*/
+#notice
+{
+    flex:1;
+    margin-right: 70px;
+}
+
+#notice a
+{
+    display:inline;
+    letter-spacing: -1px;
+}
+
+#notice a:hover
+{
+    /*color:red;*/
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#notice ol
+{
+    list-style: none;
+    line-height: 180%;
+}
+
+#notice span
+{
+    float:right;
+}
+
+/*협력사*/
+#partner
+{
+    flex:0.9;
+    margin-right: 70px;
+}
+
+#partner>a
+{
+    width:90%; 
+    margin:auto;
+}
+
+#partner>div
+{
+    width:90%;
+    margin: auto;
+    padding-top:20px;
+    display:flex;
+    justify-content: space-between; /* 가로 정렬된 2개의 box 객체 사이에 각각 오른쪽/왼쪽 끝으로 정렬 된다 */
+    align-items: center;
+}
+
+#partner h3
+{
+    background-color: #666;
+    color:white;
+    width:130px;
+    height: 130px;
+    font-size: 1.1rem;
+    letter-spacing: -1.5pt; /*pt는 소수점 사용 가능 정밀하게 조정 가능*/
+    border-radius: 50%;
+    padding-top:15%;
+    text-align: center;
+}
+
+#partner ul
+{
+    list-style-position: inside;
+    letter-spacing: -1.5pt;
+    line-height: 160%;
+}
+
+#partner ul a
+{
+    display:inline;
+}
+
+#partner ul a:hover
+{
+    color:orange;
+    border-bottom:1px dashed rgb(100, 21, 226);
+}
+
+/*배너*/
+#banner
+{
+    flex:0.65;
+    padding-top:30px;
+    /*padding-right:30px;*/
+}
+
+#banner h2
+{
+    display: none;
+}
+
+#banner button
+{
+    display: block;
+    /*padding:50 0 15px;*/
+    width:200px;
+    text-align: center;
+    border-radius: 20px;
+    background-color:#004f8a; 
+    color:white;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left:auto;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    padding :10px;
+    font-size: 90%;
+    transition: 0.5s;
+}
+
+#banner button:hover
+{
+    filter:sepia(100%) blur(1px); 
+    transform:translateY(-5px) ;
+}
+
+#banner button img
+{
+    width:20%;
+}
+
+/*하단*/
+footer 
+{ 
+    height: 150px; 
+    background-color: #ddd;
+    padding:20px; 
+}
+
+footer a/* footer 입장에서 뜨우고 a를 쓰면 footer 아래 자손들 중이고, footer>a 면 자식 이다.*/
+{
+ display: inline;
+}
+
+footer ul
+{
+    display:flex;
+    list-style: none;
+    line-height: 160%;
+}
+
+footer li:nth-child(1)
+{
+    flex:0.8;
+}
+
+footer li:nth-child(2)
+{
+    flex:1;
+}
+
+#tel
+{
+    text-decoration: underline;
+    color:blue;
+}
+
+#mail
+{
+    text-decoration: underline;
+    color:blue;
+}
+
+#biz
+{
+    text-decoration:wavy;
+    color:blue;
+}
+
+/*빨간 테두리 짤림현상이 있었음-회색 밑에 빨간 선이 깔려 있어서 그런 거임*/
+
+
